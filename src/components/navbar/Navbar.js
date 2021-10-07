@@ -1,7 +1,10 @@
 import React,{useState} from 'react';
 import logo from '../../utility/svg/logo.svg'
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 export default function Navbar() {
+    const history=useHistory();
     const [isOpen,setIsOpen] = useState(false);
     const [selectedButton,setSelectedButton] = useState(0);
     const toggle = () => setIsOpen(!isOpen);
@@ -14,7 +17,7 @@ export default function Navbar() {
             <div className="hidden sm:contents">
                 <div className="container flex justify-center items-center px-4 sm:px-6 lg:px-8 h-20">
                     <div className="w-3/12 justify-start">
-                        <Link to="/" className="brand-logo"> <img className="block mx-16 h-16 rounded-full sm:mx-0 sm:flex-shrink-0" src={logo} alt="artbyhmna logo" /> </Link>
+                        <img className="block mx-16 h-16 rounded-full sm:mx-0 sm:flex-shrink-0 cursor-pointer" src={logo} alt="artbyhmna logo" title="ArtByHmna" onClick={()=>{history.replace('/')}} />
                     </div>
                     <div>
                         <div className="relative"> <input type="text" className="h-14 w-96 pr-8 pl-5 z-0 focus:shadow focus:outline-none rounded-xl hover:bg-green-lightest bg-green-light focus:bg-green-lightest text-green-dark" placeholder="Search anything..."/>
@@ -23,24 +26,24 @@ export default function Navbar() {
                     </div>
                     
                     <div className="w-3/12 flex flex-row-reverse">
-                        <i className="fa fa-shopping-cart text-green-light hover:text-green-lightest fa-2x cursor-pointer" aria-hidden="true"></i>
+                        <i className="fa fa-shopping-cart text-green-light hover:text-green-lightest fa-2x cursor-pointer" aria-hidden="true" onClick={()=>{history.replace('/cart')}}></i>
                     </div>
                 </div>
             </div>
             <div className="sm:justify-center sm:px-6 h-10 hidden sm:flex sm:bg-green sm:text-green-dark">
-                <div className={selectedButton===1?buttonStyleOnClick:buttonStyle} onClick={()=>{setSelectedButton(1)}}>
+                <div className={selectedButton===1?buttonStyleOnClick:buttonStyle} onClick={()=>{setSelectedButton(1); history.replace('/affiliate-program')}}>
                     AFFILIATE PROGRAM
                 </div>
                 
-                <div className={selectedButton===2?buttonStyleOnClick:buttonStyle} onClick={()=>{setSelectedButton(2)}}>
+                <div className={selectedButton===2?buttonStyleOnClick:buttonStyle} onClick={()=>{setSelectedButton(2); history.replace('/track-order')}}>
                     TRACK MY ORDER
                 </div>
 
-                <div className={selectedButton===3?buttonStyleOnClick:buttonStyle} onClick={()=>{setSelectedButton(3)}}>
+                <div className={selectedButton===3?buttonStyleOnClick:buttonStyle} onClick={()=>{setSelectedButton(3); history.replace('/contact')}}>
                     CONTACT US
                 </div>
 
-                <div className={selectedButton===4?buttonStyleOnClick:buttonStyle} onClick={()=>{setSelectedButton(4)}}>
+                <div className={selectedButton===4?buttonStyleOnClick:buttonStyle} onClick={()=>{setSelectedButton(4); history.replace('/subscribe')}}>
                     SUBSCRIBE
                 </div>
             </div>
@@ -63,8 +66,8 @@ export default function Navbar() {
                     <div className="relative"> <input type="text" className="h-14 w-full pr-8 pl-5 z-0 focus:shadow focus:outline-none hover:bg-green-lightest bg-green-light focus:bg-green-lightest text-green-dark" placeholder="Search anything..."/>
                         <div className="absolute top-4 right-3"> <i className="fa fa-search text-green-dark z-20 cursor-pointer"></i> </div>
                     </div>
-                    <div className="border-b border-green-light h-12 pr-5 pl-8 bg-green-dark text-green-lightest cursor-pointer flex items-center">
-                        <div className="w-3/4 text-2xl h-full items-center flex">
+                    <div className="border-b border-green-light h-12 pr-5 pl-8 bg-green-dark text-green-lightest cursor-pointer flex items-center" onClick={()=>{history.replace('/affiliate-program')}}>
+                        <div className="w-3/4 text-2xl h-full items-center flex" >
                             <div>AFFILIATE PROGRAM</div>
                         </div>
                         <div className="w-1/4 flex flex-row-reverse">
@@ -72,17 +75,17 @@ export default function Navbar() {
                         </div>
                     </div>
 
-                    <div className="border-b border-green-light h-12 pr-5 pl-8 bg-green-dark text-green-lightest cursor-pointer flex items-center">
+                    <div className="border-b border-green-light h-12 pr-5 pl-8 bg-green-dark text-green-lightest cursor-pointer flex items-center" onClick={()=>{history.replace('/track-order')}}>
                         <div className="w-3/4 text-2xl h-full items-center flex">
                             <div>TRACK MY ORDER</div>
                         </div>
-                        <div className="w-1/4 flex flex-row-reverse">
+                        <div className="w-1/4 flex flex-row-reverse" >
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
                         </div>
                     </div>
 
-                    <div className="border-b border-green-light h-12 pr-5 pl-8 bg-green-dark text-green-lightest cursor-pointer flex items-center">
-                        <div className="w-3/4 text-2xl h-full items-center flex">
+                    <div className="border-b border-green-light h-12 pr-5 pl-8 bg-green-dark text-green-lightest cursor-pointer flex items-center" onClick={()=>{history.replace('/contact')}}>
+                        <div className="w-3/4 text-2xl h-full items-center flex" >
                             <div>CONTACT US</div>
                         </div>
                         <div className="w-1/4 flex flex-row-reverse">
@@ -90,7 +93,7 @@ export default function Navbar() {
                         </div>
                     </div>
 
-                    <div className="h-12 pr-5 pl-8 bg-green-dark text-green-lightest cursor-pointer flex items-center">
+                    <div className="h-12 pr-5 pl-8 bg-green-dark text-green-lightest cursor-pointer flex items-center" onClick={()=>{history.replace('/cart')}}>
                         <div className="w-3/4 text-2xl h-full items-center flex">
                             <div>SUBSCRIBE</div>
                         </div>
