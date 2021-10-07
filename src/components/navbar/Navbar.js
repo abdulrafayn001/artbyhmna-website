@@ -100,6 +100,15 @@ export default function Navbar() {
                         <div className="w-1/4 flex flex-row-reverse">
                             <i class="fa fa-user-plus" aria-hidden="true"></i>
                         </div>
+                    </div>
+
+                    <div className="border-t border-green-light h-12 pr-5 pl-8 bg-green-dark text-green-lightest cursor-pointer flex items-center" onClick={()=>{history.replace('/cart')}}>
+                        <div className="w-3/4 text-2xl h-full items-center flex">
+                            <div>CART</div>
+                        </div>
+                        <div className="w-1/4 flex flex-row-reverse">
+                            <i className="fa fa-shopping-cart " aria-hidden="true"></i>
+                        </div>
                     </div>                
                 </div>
             )}
