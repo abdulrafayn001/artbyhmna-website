@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
 import logo from '../../utility/svg/logo.svg'
-import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function Navbar() {
