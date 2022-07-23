@@ -20,7 +20,7 @@ export default function Navbar() {
   return (
     <nav className="bg-green-dark">
       <div className="hidden sm:contents">
-        <div className="container flex justify-center items-center px-4 sm:px-6 lg:px-8 h-20">
+        <div className="container flex justify-center items-center px-4 sm:px-6 lg:px-8 h-20 ml-auto mr-auto">
           <div className="w-3/12 justify-start">
             <img
               className="block mx-16 h-16 rounded-full sm:mx-0 sm:flex-shrink-0 cursor-pointer"

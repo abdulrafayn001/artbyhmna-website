@@ -22,10 +22,10 @@ export default function SlideShow () {
          {slideImages.map((slideImage, index)=> (
             <div className="each-slide h-56 md:80" key={index}>
               <div>
-                <img src={"https://www.freecodecamp.org/news/content/images/size/w2000/2020/12/fcc-bg-image-2.png"} alt="" />
+                <img src={"https://www.freecodecamp.org/news/content/images/size/w2000/2020/12/fcc-bg-image-2.png"} alt="" className="ml-auto mr-auto" />
               </div>
             </div>
-          ))} 
+          ))}
         </Slide>
       </div>
     )
