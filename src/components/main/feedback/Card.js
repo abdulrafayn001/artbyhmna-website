@@ -12,7 +12,7 @@ export default function Card(props) {
                     <img src={props.image} alt="Customer Profile" className="w-12 h-12 rounded-full bg-green-light-lightest" />
                 </div>
                 <div className="flex-auto">
-                    <span className="text-green hover:text-green-dark cursor-default">{props.name}</span>
+                    <span className="text-green hover:text-green-dark cursor-default"><a href={props.profile} target="_blank" rel="noopener noreferrer">{props.name}</a></span>
                 </div>
                 <a href={props.profile} target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram fa-3x text-green-dark hover:text-green cursor-pointer"></i></a>
             </figcaption>
