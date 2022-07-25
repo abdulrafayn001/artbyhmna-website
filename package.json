@@ -14,7 +14,10 @@
     "react-scripts": "4.0.3",
     "react-slideshow-image": "^3.5.1",
     "web-vitals": "^1.0.1",
-    "zustand": "^4.0.0-rc.4"
+    "zustand": "^4.0.0-rc.4",
+    "autoprefixer": "^9.8.8",
+    "postcss": "^7.0.39",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.16"
   },
   "scripts": {
     "start": "craco start && postcss src/css/app.css -o public/app.css",

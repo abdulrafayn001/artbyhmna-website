@@ -28,7 +28,7 @@ export default function Subscribe() {
                     ></i>
 
                     <div className="ml-4 text-md tracking-wide font-semibold w-40 text">
-                      +92 321 1392284
+                      <a href="https://api.whatsapp.com/send?phone=923211392284&text=Hello this is the starting message">Whatsapp Chat</a>
                     </div>
                   </div>
 
