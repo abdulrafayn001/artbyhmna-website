@@ -24,7 +24,7 @@
     "zustand": "^4.0.0-rc.4"
   },
   "scripts": {
-    "start": "craco start && postcss src/css/app.css -o public/app.css",
+    "start": "node server.js",
     "build": "craco build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
