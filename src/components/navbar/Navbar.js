@@ -49,6 +49,7 @@ export default function Navbar() {
           </div>
 
           <div className="w-3/12 flex flex-row-reverse">
+          <button className='relative bg-blue-500 text-white rounded text-2xl font-bold overflow-visible'>
             <i
               className="fa fa-shopping-cart text-green-light hover:text-green-lightest fa-2x cursor-pointer"
               aria-hidden="true"
@@ -57,6 +58,8 @@ export default function Navbar() {
                 history.replace("/cart");
               }}
             ></i>
+            <div className="absolute top-0 right-0 -mt-4 -mr-4 px-4 py-1 text-sm rounded-full"></div>
+          </button>
           </div>
         </div>
       </div>
@@ -155,7 +158,7 @@ export default function Navbar() {
               <div>AFFILIATE PROGRAM</div>
             </div>
             <div className="w-1/4 flex flex-row-reverse">
-              <i class="fa fa-share" aria-hidden="true"></i>
+              <i className="fa fa-share" aria-hidden="true"></i>
             </div>
           </div>
 
@@ -174,7 +177,7 @@ export default function Navbar() {
               <div>TRACK MY ORDER</div>
             </div>
             <div className="w-1/4 flex flex-row-reverse">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <i className="fa fa-map-marker" aria-hidden="true"></i>
             </div>
           </div>
 
@@ -193,7 +196,7 @@ export default function Navbar() {
               <div>CONTACT US</div>
             </div>
             <div className="w-1/4 flex flex-row-reverse">
-              <i class="fa fa-mobile" aria-hidden="true"></i>
+              <i className="fa fa-mobile" aria-hidden="true"></i>
             </div>
           </div>
 
@@ -212,7 +215,7 @@ export default function Navbar() {
               <div>SUBSCRIBE</div>
             </div>
             <div className="w-1/4 flex flex-row-reverse">
-              <i class="fa fa-user-plus" aria-hidden="true"></i>
+              <i className="fa fa-user-plus" aria-hidden="true"></i>
             </div>
           </div>
 
@@ -229,7 +232,10 @@ export default function Navbar() {
               <div>CART</div>
             </div>
             <div className="w-1/4 flex flex-row-reverse">
-              <i className="fa fa-shopping-cart " aria-hidden="true"></i>
+              <button className='relative bg-blue-500 text-white p-6 rounded text-2xl font-bold overflow-visible'>
+                <i className="fa fa-shopping-cart " aria-hidden="true"></i>
+                <div className="absolute top-0 right-0 -mt-4 -mr-4 px-4 py-1 text-green-dark rounded-full">1</div>
+              </button>
             </div>
           </div>
         </div>

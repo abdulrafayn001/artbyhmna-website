@@ -1,20 +1,53 @@
 import React from 'react'
+import { useHistory } from "react-router-dom";
+import { LazyLoadImage, trackWindowScroll } from 'react-lazy-load-image-component';
 
 export default function Card(props) {
+  const history = useHistory();
+
+    const goToProduct = event => {
+        let images = []
+        props.product.images.forEach(img => {
+        images = [...images, {image: img.url}]
+        });
+        history.push({
+           pathname: '/product',
+           state: {images: images, product: props.product},
+       });
+    };
+
     return (
-        <div class=" w-40 h-54 shadow-lg sm:w-52 sm:h-80 hover:bg-green-light rounded-lg border-green-dark mb-3 cursor-pointer">
-            <img class="w-52 h-44 rounded-t-lg text-green-dark" src={props.image} alt={props.name}/>
-            <div class="sm:px-6 sm:py-4 px-2 py-1">
-                <div class="font-bold text-sm mb-1 text-green-dark">Rs. {props.price}</div>
-                <p class="text-gray-700 text-base">
-                {props.name}
-                </p>
-            </div>
-            <hr className=" mb-1 sm:mb-3 text-green-dark"/>
-            <div class="flex">
-                <div className="flex-auto"><span className="ml-2 sm:block hidden"> {props.rating}/5</span>
+        <div className="w-72 bg-white drop-shadow-md rounded-lg mb-4 hover:shadow-lg">
+            {/* <PreloadImage
+                src={props.image}
+                lazy
+                /> */}
+
+                {/* <LazyLoadImage
+                        // key={pprops.image.key}
+                        // scrollPosition={scrollPosition}
+                        src={props.image}/> */}
+            <img className="object-cover rounded-tl-lg rounded-tr-lg cursor-pointer" src={props.image} alt={props.name} onClick={goToProduct} />
+            <div className="px-5 py-3 space-y-2 border border-green border-t-0 h-56 relative">
+                <h3 className="text-lg">{props.name}</h3>
+                <div className="absolute bottom-8 w-60	">
+                    <div className="space-x-2">
+                        <span data-tooltip-target="tooltip-cod" className="px-3 py-0.5 border border-blue-500 text-[11px] text-blue-500 cursor-default" title="Cash on Delivery">COD</span>
+                        <span className="px-3 py-0.5 border border-blue-500 text-[11px] text-blue-500 cursor-default">7 Day Return</span>
+                    </div><div id="tooltip-cod" role="tooltip" className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                            Cash on Delivery
+                            <div className="tooltip-arrow" data-popper-arrow></div>
+                        </div>
+                    <p className="space-x-2">
+                        <span className="text-2xl font-semibold">Rs. {props.discount===0 ? props.price : props.price - ((props.discount/100)*props.price)}</span>
+                        {props.discount != 0 && (<span className="text-sm line-through text-gray-500">Rs. {props.price}</span>) }
+                        {props.discount != 0 && (<span className="text-sm text-red-700">{props.discount}% off</span>) }
+                    </p>
+                    <div className="flex justify-between items-center pt-3 pb-2">
+                        <button className='px-4 py-2 bg-green hover:bg-green-dark hover:text-green-lightest text-center text-sm text-white rounded duration-300'>Add to Cart</button>
+                        <a href="www.google.com" title="Add to Favorites" className="text-2xl text-gray-300 hover:text-red-500 duration-300">&hearts;</a>
+                    </div>
                 </div>
-                <button type="submit" className="mr-2 mb-2 mt-3 bg-transparent text-sm sm:font-semibold hover:text-green-lightest border border-green-dark text-green-dark hover:bg-green-dark rounded px-2">ADD TO CART</button>
             </div>
         </div>
     )

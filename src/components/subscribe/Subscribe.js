@@ -33,7 +33,7 @@ export default function Subscribe() {
                   </div>
 
                   <div className="flex items-center mt-2 text-green-dark dark:text-green">
-                    <i class="far fa-envelope text-green-dark hover:text-green fa-2x cursor-pointer"></i>
+                    <i className="far fa-envelope text-green-dark hover:text-green fa-2x cursor-pointer"></i>
                     <div className="ml-4 text-md tracking-wide font-semibold w-40">
                       artbyhumna@gmail.com
                     </div>
@@ -48,7 +48,7 @@ export default function Subscribe() {
                   }}
                 >
                   <div className="flex flex-col">
-                    <label for="name" className="hidden">
+                    <label htmlFor="name" className="hidden">
                       Full Name
                     </label>
                     <input
@@ -64,7 +64,7 @@ export default function Subscribe() {
                   </div>
 
                   <div className="flex flex-col mt-2">
-                    <label for="email" className="hidden">
+                    <label htmlFor="email" className="hidden">
                       Email
                     </label>
                     <input
@@ -80,7 +80,7 @@ export default function Subscribe() {
                   </div>
 
                   <div className="flex flex-col mt-2">
-                    <label for="tel" className="hidden">
+                    <label htmlFor="tel" className="hidden">
                       Number
                     </label>
                     <input

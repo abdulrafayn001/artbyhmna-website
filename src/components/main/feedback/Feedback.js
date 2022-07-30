@@ -7,7 +7,7 @@ export default function Feedback() {
     return (
         <ul className=" flex items-center w-full py-8 overflow-hidden">
             {feedbacks.map( (feedback, index) => {
-                return <Card image={feedback.image} name={feedback.name} feedback={feedback.feedback} profile={feedback.profile} index={index}/>
+                return <Card image={feedback.image} name={feedback.name} feedback={feedback.feedback} profile={feedback.profile} key={index}/>
             } )}
         </ul>
     )

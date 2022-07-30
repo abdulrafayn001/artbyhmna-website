@@ -10,7 +10,7 @@ export default function SlideShow () {
       <div className="slide-container sm:pl-12 sm:pr-2 sm:mt-3">
         <Slide>
          {sliderImages.map((slideImage, index)=> (
-            <div className="each-slide h-56 md:80" key={index}>
+            <div className="each-slide h-full" key={index}>
               <div>
                 <img src={slideImage.url} alt="" className="ml-auto mr-auto" />
               </div>
