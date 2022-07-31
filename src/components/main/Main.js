@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import SlideShow from "./SlideShow";
 import Feedback from "./feedback/Feedback";
 import Categories from "./categories/Categories";
@@ -8,6 +8,17 @@ import { useStore } from "./../../store";
 
 export default function Main() {
   const products = useStore((state)=> state.products)
+  const setSelectedPtoducts = useStore((state)=> state.setSelectedPtoducts)
+  const selectedPtoducts = useStore((state)=> state.selectedPtoducts)
+
+  useEffect(()=> {
+    setSelectedPtoducts(products)
+  },[products])
+
+  useEffect(()=> {
+
+  },[selectedPtoducts])
+
   function randomNumberInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -18,7 +29,7 @@ export default function Main() {
       <Feedback />
       <div className="flex justify-evenly flex-wrap">
         {
-          products.map((product, index) => {
+          selectedPtoducts.map((product, index) => {
             return (
               <Card
                 key={index}

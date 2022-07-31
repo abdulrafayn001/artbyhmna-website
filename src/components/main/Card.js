@@ -1,9 +1,12 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
+import { useStore } from '../../store';
 import { LazyLoadImage, trackWindowScroll } from 'react-lazy-load-image-component';
 
 export default function Card(props) {
   const history = useHistory();
+  const cart = useStore((state)=> state.cart)
+  const setCart = useStore((state)=> state.setCart)
 
     const goToProduct = event => {
         let images = []
@@ -15,6 +18,13 @@ export default function Card(props) {
            state: {images: images, product: props.product},
        });
     };
+
+    const addToCart = (product) => {
+        if(cart.length ===0 || cart.filter(p => p.description === product.description).length === 0) {
+            console.log({...product, quantity: 1})
+            setCart([{...product, quantity: 1}])
+        }
+    }
 
     return (
         <div className="w-72 bg-white drop-shadow-md rounded-lg mb-4 hover:shadow-lg">
@@ -44,8 +54,8 @@ export default function Card(props) {
                         {props.discount != 0 && (<span className="text-sm text-red-700">{props.discount}% off</span>) }
                     </p>
                     <div className="flex justify-between items-center pt-3 pb-2">
-                        <button className='px-4 py-2 bg-green hover:bg-green-dark hover:text-green-lightest text-center text-sm text-white rounded duration-300'>Add to Cart</button>
-                        <a href="www.google.com" title="Add to Favorites" className="text-2xl text-gray-300 hover:text-red-500 duration-300">&hearts;</a>
+                        <button className='px-4 py-2 bg-green hover:bg-green-dark hover:text-green-lightest text-center text-sm text-white rounded duration-300' onClick={()=>{addToCart(props.product)}}>Add to Cart</button>
+                        <span className="text-2xl text-gray-300 hover:text-red-500 duration-300">&hearts;</span>
                     </div>
                 </div>
             </div>

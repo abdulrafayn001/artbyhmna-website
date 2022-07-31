@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../utility/svg/logo.svg";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+import  { useStore} from "../../store"
 
 export default function Navbar() {
   const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedButton, setSelectedButton] = useState(0);
   const toggle = () => setIsOpen(!isOpen);
+  const setSelectedPtoducts = useStore((state)=> state.setSelectedPtoducts)
+  const products = useStore((state)=> state.products)
+  const cart = useStore((state)=> state.cart)
+
+  useEffect(() => {
+    console.log(cart)
+  },[cart])
+
+  const search = (e) => {
+    setSelectedPtoducts(products.filter(p => p.product.toLowerCase().includes(e.target.value.toLowerCase())))
+    history.replace("/");
+  }
 
   const buttonStyle =
     "flex w-1/4 justify-center h-full hover:text-green-light hover:bg-green-dark rounded-br-full rounded-bl-full items-center cursor-pointer";
@@ -28,6 +42,7 @@ export default function Navbar() {
               alt="artbyhmna logo"
               title="ArtByHmna"
               onClick={() => {
+                setSelectedPtoducts(products)
                 history.replace("/");
                 setSelectedButton(0);
               }}
@@ -40,10 +55,11 @@ export default function Navbar() {
                 type="text"
                 className="h-14 w-96 pr-8 pl-5 z-0 focus:shadow focus:outline-none rounded-xl hover:bg-green-lightest bg-green-light focus:bg-green-lightest text-green-dark"
                 placeholder="Search anything..."
+                onChange={search}
               />
               <div className="absolute top-4 right-3">
                 {" "}
-                <i className="fa fa-search text-green-dark z-20 hover:text-gray-light cursor-pointer"></i>{" "}
+                <i className="fa fa-search text-green-dark z-20 hover:text-gray-light"></i>{" "}
               </div>
             </div>
           </div>
@@ -58,7 +74,7 @@ export default function Navbar() {
                 history.replace("/cart");
               }}
             ></i>
-            <div className="absolute top-0 right-0 -mt-4 -mr-4 px-4 py-1 text-sm rounded-full"></div>
+            <div className="absolute top-0 right-0 -mt-4 -mr-4 px-4 py-1 text-sm rounded-full text-green-lightest">{cart.length>0 && cart.length}</div>
           </button>
           </div>
         </div>

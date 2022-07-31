@@ -2,7 +2,7 @@ import React from 'react'
 import RighrArrow from '../../../utility/svg/rightArrow.svg'
 export default function CategoryButton(props) {
     return (
-        <div className="h-10 w-72 md:w-96 bg-green-light rounded-3xl hover:bg-green cursor-pointer flex items-center md:mt-8 mt-2" index={props.index}>
+        <div className="h-10 w-72 md:w-96 bg-green-light rounded-3xl hover:bg-green cursor-pointer flex items-center md:mt-8 mt-2" key={props.index} onClick={props.onClick}>
             {/* <img src={props.logo} alt="Category Logo" className="rounded-full w-10 h-10 " /> */}
             <div className="flex-auto text-center">
                 <span className="ml-3 text-green-dark font-semibold">{props.category}</span>

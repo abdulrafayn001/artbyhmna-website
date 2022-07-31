@@ -4,11 +4,17 @@ import { useStore } from '../../../store'
 
 export default function Categories() {
     const categories = useStore((state)=> state.categories)
+    const products = useStore((state)=> state.products)
+    const setSelectedPtoducts = useStore((state)=> state.setSelectedPtoducts)
+
+    const onClickCategoryButton = (category) => {
+        setSelectedPtoducts(products.filter(product => product.category === category))
+    };
     return (
         <div className="flex flex-wrap justify-between flex-auto mr-12 ml-12 ">
             {
                 categories.map((category, index)=> {
-                    return <CategoryButton key={index} category={category} />
+                    return <CategoryButton key={index} category={category} onClick={()=>{onClickCategoryButton(category)}} />
                 })
             }
         </div>
