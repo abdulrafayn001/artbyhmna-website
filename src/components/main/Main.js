@@ -5,11 +5,20 @@ import Categories from "./categories/Categories";
 import Card from "./Card";
 import Footer from "../footer/Footer";
 import { useStore } from "./../../store";
+import { scroller } from "react-scroll";
 
 export default function Main() {
   const products = useStore((state)=> state.products)
   const setSelectedPtoducts = useStore((state)=> state.setSelectedPtoducts)
   const selectedPtoducts = useStore((state)=> state.selectedPtoducts)
+
+  const executeScroll = () => {
+    scroller.scrollTo("products", {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  }
 
   useEffect(()=> {
     setSelectedPtoducts(products)
@@ -25,9 +34,9 @@ export default function Main() {
   return (
     <div>
       <SlideShow />
-      <Categories />
+      <Categories onClick={executeScroll} />
       <Feedback />
-      <div className="flex justify-evenly flex-wrap">
+      <div className="flex justify-evenly flex-wrap products" >
         {
           selectedPtoducts.map((product, index) => {
             return (

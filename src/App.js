@@ -12,9 +12,9 @@ import Product from './components/product/Product';
 import Loading from './components/loading/Loading';
 import { useStore } from './store';
 import { useState, useEffect } from 'react';
-import SlideServices from "./services/SliderServices"
-import FeedbackServices from "./services/FeedbackServices"
-import ProductsServices from "./services/ProductsServices"
+import './firebase'
+
+import { getDatabase, ref, child, get } from "firebase/database";
 
 
 function App() {
@@ -23,42 +23,53 @@ function App() {
   const setFeedbacks = useStore((state) => state.setFeedbacks )
   const setProducts = useStore((state) => state.setProducts )
   const setCategories = useStore((state) => state.setCategories )
+
+  const dbRef = ref(getDatabase());
+
   useEffect(() => {
-    let sliderImages =[]
-    let feedbacks = []
-    let categories = []
-    let products = []
 
-    const slidesRef = SlideServices.getAll()
-    const feedbackRef = FeedbackServices.getAll()
-    const prouctsRef = ProductsServices.getAll()
-
-    prouctsRef.once('value', snap => {
-      snap.forEach(child => {
-          categories = [...categories, child.key];
-          for (var key in child.val()) {
-            products.push(child.val()[key])
-          }
+    get(child(dbRef, `/products`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        const allProducts = snapshot.val()
+        let products  = []
+        let categories = []
+        Object.keys(allProducts).forEach(key => {
+          categories.push(key)
+          const categoryProducts = allProducts[key]
+          Object.keys(categoryProducts).forEach(key => {
+            products.push(categoryProducts[key])
+          })
         });
         setProducts(products)
         setCategories(categories)
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
     });
 
-    slidesRef.once('value', snap => {
-        snap.forEach(child => {
-            sliderImages = [...sliderImages,{url: child.val().url, public_id: child.val().public_id}];
-        });
-      setSliderImages(sliderImages)
+    get(child(dbRef, `/slider-images`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        setSliderImages(Object.values(snapshot.val()))
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
     });
 
-    feedbackRef.once('value', snap => {
-      snap.forEach(child => {
-        feedbacks = [...feedbacks,{profile: child.val().profile, image: child.val().image, name: child.val().name, feedback: child.val().feedback}];
-      });
-      setFeedbacks(feedbacks)
-      setTimeout(()=>{setLoading(false)}, 2000);
-  });
-  },[])
+    get(child(dbRef, `/customer-feedback`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        setFeedbacks(Object.values(snapshot.val()))
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    setTimeout(()=>{setLoading(false)}, 2000);
+  },[dbRef])
 
 
   const Routing=()=>{
